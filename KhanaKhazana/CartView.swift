@@ -38,7 +38,7 @@ struct CartView: View {
                                 PriceRow(title: "Grand Total", amount: cart.grandTotal, isTotal: true)
                             }
                             .padding()
-                            .background(Color.gray.opacity(0.1))
+                            .background(Color.brown.opacity(0.1))
                             .cornerRadius(12)
                             .padding(.horizontal)
                             
@@ -51,7 +51,7 @@ struct CartView: View {
                                         .progressViewStyle(CircularProgressViewStyle(tint: .white))
                                         .frame(maxWidth: .infinity)
                                         .padding()
-                                        .background(Color.blue)
+                                        .background(Color.brown.opacity(0.8))
                                         .cornerRadius(12)
                                 } else {
                                     Text("Place Order")
@@ -59,7 +59,7 @@ struct CartView: View {
                                         .foregroundColor(.white)
                                         .frame(maxWidth: .infinity)
                                         .padding()
-                                        .background(Color.blue)
+                                        .background(Color.brown)
                                         .cornerRadius(12)
                                 }
                             }
@@ -72,11 +72,11 @@ struct CartView: View {
                     VStack(spacing: 20) {
                         Image(systemName: "cart")
                             .font(.system(size: 60))
-                            .foregroundColor(.gray)
+                            .foregroundColor(.brown.opacity(0.6))
                         
                         Text("Your cart is empty")
                             .font(.title2)
-                            .foregroundColor(.gray)
+                            .foregroundColor(.brown.opacity(0.8))
                     }
                 }
             }
@@ -84,12 +84,10 @@ struct CartView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button(action: {
+                    Button("Cancel") {
                         dismiss()
-                    }) {
-                        Image(systemName: "xmark")
-                            .font(.title2)
                     }
+                    .foregroundColor(.brown)
                 }
             }
             .alert("Order Placed", isPresented: $showOrderPlaced) {
@@ -179,7 +177,7 @@ struct CartItemRow: View {
                         dataController.removeDishFromCart(dish: item.dish)
                     }) {
                         Image(systemName: "minus.circle.fill")
-                            .foregroundColor(.blue)
+                            .foregroundColor(.brown.opacity(0.8))
                     }
                     
                     Text("\(item.quantity)")
@@ -190,7 +188,7 @@ struct CartItemRow: View {
                         dataController.addDishToCart(dish: item.dish)
                     }) {
                         Image(systemName: "plus.circle.fill")
-                            .foregroundColor(.blue)
+                            .foregroundColor(.brown.opacity(0.8))
                     }
                 }
             }
@@ -199,11 +197,11 @@ struct CartItemRow: View {
             
             Text("₹\(String(format: "%.2f", item.dish.price * Double(item.quantity)))")
                 .font(.headline)
+                .foregroundColor(.brown.opacity(0.9))
         }
         .padding()
-        .background(Color.white)
+        .background(Color.brown.opacity(0.05))
         .cornerRadius(12)
-        .shadow(radius: 2)
         .padding(.horizontal)
     }
 }
@@ -216,14 +214,15 @@ struct PriceRow: View {
     var body: some View {
         HStack {
             Text(title)
-                .font(isTotal ? .title3 : .body)
+                .font(isTotal ? .headline : .subheadline)
                 .fontWeight(isTotal ? .bold : .regular)
             
             Spacer()
             
             Text("₹\(String(format: "%.2f", amount))")
-                .font(isTotal ? .title3 : .body)
+                .font(isTotal ? .headline : .subheadline)
                 .fontWeight(isTotal ? .bold : .regular)
+                .foregroundColor(isTotal ? .brown : .primary)
         }
     }
 }

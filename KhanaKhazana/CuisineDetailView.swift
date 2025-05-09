@@ -16,7 +16,7 @@ struct CuisineDetailView: View {
                             .resizable()
                             .aspectRatio(contentMode: .fill)
                     } placeholder: {
-                        Color.gray
+                        Color.brown.opacity(0.3)
                     }
                     .frame(height: 200)
                     .clipShape(RoundedRectangle(cornerRadius: 12))
@@ -24,6 +24,7 @@ struct CuisineDetailView: View {
                     Text(cuisine.name)
                         .font(.title)
                         .fontWeight(.bold)
+                        .foregroundColor(.brown)
                         .padding(.horizontal)
                     
                     // Dishes List
@@ -46,12 +47,10 @@ struct CuisineDetailView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button(action: {
+                    Button("Cancel") {
                         dismiss()
-                    }) {
-                        Image(systemName: "xmark")
-                            .font(.title2)
                     }
+                    .foregroundColor(.brown)
                 }
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -61,7 +60,7 @@ struct CuisineDetailView: View {
                         Text(selectedLanguage == .english ? "अ" : "A")
                             .padding(.horizontal, 12)
                             .padding(.vertical, selectedLanguage == .english ? 8 : 7)
-                            .background(Color.green.opacity(0.7))
+                            .background(Color.brown.opacity(0.8))
                             .foregroundColor(.white)
                             .cornerRadius(.infinity)
                     }
